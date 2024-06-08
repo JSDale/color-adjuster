@@ -17,9 +17,9 @@
             <th>50% brighter</th>
             <th>25% brighter</th>
             <th>Original</th>
-            <th>75% of original</th>
-            <th>50% of original</th>
-            <th>25% of original</th>
+            <th>25% darker</th>
+            <th>50% darker</th>
+            <th>75% darker</th>
         </tr>
 
         <tr id="transparentRow0">
@@ -28,9 +28,9 @@
             <td id="g50t0"></td>
             <td id="g25t0"></td>
             <td id="g0t0"></td>
-            <td id="t75t0"></td>
-            <td id="t50t0"></td>
             <td id="t25t0"></td>
+            <td id="t50t0"></td>
+            <td id="t75t0"></td>
         </tr>
 
         <tr id="transparentRow75">
@@ -39,9 +39,9 @@
             <td id="g50t75"></td>
             <td id="g25t75"></td>
             <td id="g0t75"></td>
-            <td id="t75t75"></td>
-            <td id="t50t75"></td>
             <td id="t25t75"></td>
+            <td id="t50t75"></td>
+            <td id="t75t75"></td>
         </tr>
 
         <tr id="transparentRow50">
@@ -50,9 +50,9 @@
             <td id="g50t50"></td>
             <td id="g25t50"></td>
             <td id="g0t50"></td>
+            <td id="t25t50"></td>
             <td id="t50t50"></td>
             <td id="t75t50"></td>
-            <td id="t25t50"></td>
         </tr>
 
         <tr id="transparentRow25">
@@ -61,9 +61,9 @@
             <td id="g50t25"></td>
             <td id="g25t25"></td>
             <td id="g0t25"></td>
-            <td id="t75t25"></td>
-            <td id="t50t25"></td>
             <td id="t25t25"></td>
+            <td id="t50t25"></td>
+            <td id="t75t25"></td>
         </tr>
     </table>
 
@@ -90,7 +90,7 @@
             element.style.backgroundColor = color;
 
             var color = tintRgbColor(enteredColor, -25);
-            var element = document.getElementById("t75t0");
+            var element = document.getElementById("t25t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
 
@@ -100,7 +100,7 @@
             element.style.backgroundColor = color;
 
             var color = tintRgbColor(enteredColor, -75);
-            var element = document.getElementById("t25t0");
+            var element = document.getElementById("t75t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
         }
