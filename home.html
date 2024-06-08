@@ -8,7 +8,7 @@
     <title>A.R.G.B Color Picker</title>
 </head>
 <body style="font-family: Arial;">
-    <input id="colorInput" type="text" placeholder="Color" style="width: 30%; height: 2%; margin-top: 3%; margin-left: 2%;"/>
+    <input id="colorInput" type="text" placeholder="Hex Color" style="width: 30%; height: 2%; margin-top: 3%; margin-left: 2%;"/>
     <button onclick="changeColor()">Change Text Color</button>
     <table style="margin-top: 5%; margin-left: 2%">
         <tr>
@@ -67,10 +67,14 @@
         </tr>
     </table>
 
+    <h2 id="errorHeading" style="margin-top: 5%; margin-left: 2%; color: red;"></h2>
+
     <script>
         function changeColor() 
         {
-            var input = document.getElementById("colorInput");
+            try
+            {
+                var input = document.getElementById("colorInput");
             let enteredColor = input.value;
             var element = document.getElementById("g0t0");
             var color = tintRgbColor(enteredColor, 0);
@@ -171,13 +175,21 @@
             var element = document.getElementById("t75t75");
             var transparentColor = applyTransparency(color, 75);
             element.style.backgroundColor = transparentColor;
+
+            var element = document.getElementById("errorHeading");
+            element.innerText = "";
+            }
+            catch(ex)
+            {
+                var element = document.getElementById("errorHeading");
+                element.innerText = ex;
+            }
         }
     
         function tintRgbColor(rgbColor, tintPercentage) 
         {
             if (!/^#[0-9A-F]{6}$/i.test(rgbColor)) {
-                console.error("Invalid RGB color format.");
-                return;
+                throw ("Invalid hex color format.");
             }
     
             rgbColor = rgbColor.replace("#", "");
@@ -210,8 +222,7 @@
             var isValid = !/^rgb([0-9A-F],{2} [0-9A-F])$/i.test(rgbColor)
             if (!isValid) 
             {
-                console.error("Invalid RGB color format.");
-                return;
+                throw ("Invalid RGB color format.");
             }
     
             rgbColor = rgbColor.replace("rgb(", "");
