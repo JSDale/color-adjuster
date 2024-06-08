@@ -68,53 +68,122 @@
     </table>
 
     <script>
-        function changeColor() {
+        function changeColor() 
+        {
             var input = document.getElementById("colorInput");
             let enteredColor = input.value;
             var element = document.getElementById("g0t0");
-            element.style.backgroundColor = enteredColor;
-
+            var color = tintRgbColor(enteredColor, 0);
+            element.style.backgroundColor = color;
+            var element = document.getElementById("g0t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g0t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g0t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, 25);
             var element = document.getElementById("g25t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
-
+            element.style.backgroundColor = color;
+            var element = document.getElementById("g25t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g25t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g25t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, 50);
             var element = document.getElementById("g50t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
-
+            element.style.backgroundColor = color;
+            var element = document.getElementById("g50t25");
+            var transparentColor = applyTransparency(color, 25);
+            console.debug("glow 50 tint 25: " + transparentColor);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g50t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g50t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, 75);
             var element = document.getElementById("g75t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
-
+            var element = document.getElementById("g75t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g75t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("g75t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, -25);
             var element = document.getElementById("t25t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
-
+            var element = document.getElementById("t25t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t25t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t25t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, -50);
             var element = document.getElementById("t50t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
-
+            var element = document.getElementById("t50t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t50t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t50t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
+    
             var color = tintRgbColor(enteredColor, -75);
             var element = document.getElementById("t75t0");
             console.debug("color is: " + color);
             element.style.backgroundColor = color;
+            var element = document.getElementById("t75t25");
+            var transparentColor = applyTransparency(color, 25);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t75t50");
+            var transparentColor = applyTransparency(color, 50);
+            element.style.backgroundColor = transparentColor;
+            var element = document.getElementById("t75t75");
+            var transparentColor = applyTransparency(color, 75);
+            element.style.backgroundColor = transparentColor;
         }
-
-        function tintRgbColor(rgbColor, tintPercentage) {
+    
+        function tintRgbColor(rgbColor, tintPercentage) 
+        {
             if (!/^#[0-9A-F]{6}$/i.test(rgbColor)) {
-                console.error("Invalid ARGB color format.");
+                console.error("Invalid RGB color format.");
                 return;
             }
-
+    
             rgbColor = rgbColor.replace("#", "");
             // Convert the ARGB color to an array of integers
-            let wibble = rgbColor.match(/.{1,2}/g);
-            const argbArray = wibble.map(hex => parseInt(hex, 16));
+            let collection = rgbColor.match(/.{1,2}/g);
+            var argbArray = collection.map(hex => parseInt(hex, 16));
             // Calculate the amount of white to add based on the tint percentage
             var  whiteToAdd = Math.round((255 * tintPercentage) / 100);
             // Add the calculated white to the red, green, and blue components
@@ -130,9 +199,27 @@
             }
             
             // Convert the modified components back to a hex string
-            const floob = "rgb(";
-            var tintedHex = floob.concat(argbArray[0], ", ", argbArray[1], ", ", argbArray[2], ")")         
+            var prefix = "rgb(";
+            var tintedHex = prefix.concat(argbArray[0], ", ", argbArray[1], ", ", argbArray[2], ")")         
             return tintedHex;
+        }
+
+        function applyTransparency(rgbColor, transparency)
+        {
+            const alpha = transparency / 100;
+            var isValid = !/^rgb([0-9A-F],{2} [0-9A-F])$/i.test(rgbColor)
+            if (!isValid) 
+            {
+                console.error("Invalid RGB color format.");
+                return;
+            }
+    
+            rgbColor = rgbColor.replace("rgb(", "");
+            rgbColor = rgbColor.replace(")", "");
+            let collection = rgbColor.split(", ")
+            var prefix = "rgba(";
+            const transparentColor = prefix.concat(collection[0], ", ", collection[1], ", ", collection[2], ", ", alpha, ")")
+            return transparentColor;
         }
     </script>
 </body>
