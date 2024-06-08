@@ -1,0 +1,19 @@
+table{
+    width: 90%;
+    height: 85%;
+}
+
+table, th, td {
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+th{
+    text-align: center;
+    width: 10%;
+}
+
+td{
+    text-align: center;
+    height: 100px;
+}
